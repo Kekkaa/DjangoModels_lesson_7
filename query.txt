@@ -1,0 +1,34 @@
+1 models.Order.objects.filter(date__range=['2023-05-01','2023-05-31'])
+ <QuerySet [<Order: Order object (1)>, <Order: Order object (2)>]>
+
+2 models.Order.objects.filter(date__gte='2023-05-01')
+<QuerySet [<Order: Order object (1)>, <Order: Order object (2)>, <Order: Order object (3)>]>
+
+3 models.Employee.objects.filter(surname__exact='ivanov')
+<QuerySet []>
+
+4 models.Employee.objects.filter(surname__iexact='ivanov')
+<QuerySet [<Employee: Employee object (1)>]>
+
+5 cust = models.Client.objects.first()
+  cust.order.all()
+ <QuerySet [<Order: Order object (1)>]>
+
+6 models.Order.objects.filter(departure__iexact='oslo').exists()
+True
+
+
+7 models.Client.objects.filter(name__contains='Inna')
+<QuerySet [<Client: Client object (3)>]>
+
+8 models.Client.objects.filter(surname__icontains='r')
+<QuerySet [<Client: Client object (2)>, <Client: Client object (3)>]>
+
+
+9 from django.utils import timezone
+  models.Order.objects.filter(date__exact=timezone.now())
+<QuerySet [<Order: Order object (1)>]>
+
+
+10 models.Order.objects.filter(date__exact=timezone.now()).exists()
+True
